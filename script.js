@@ -173,3 +173,37 @@ console.log("Generators:", person2);
 console.log("Generators:", person3);
 
 // dynamic imports: https://www.youtube.com/watch?v=cRHQNNcYf6s
+
+// labels
+loop1: for (let i = 0; i < 4; i++) {
+  loop2: for (let j = 0; j < 3; j++) {
+    console.log("before continue");
+    if (i === 1) {
+      continue loop1; // skip immediatly to loop1 label
+    }
+
+    console.log(
+      `%ci=%c${i}, %cj=%c${j}`,
+      "color:#555",
+      "font-weight:bold",
+      "color:#555",
+      "font-weight:bold"
+    );
+
+    // break loop2
+    if (i === 2) {
+      break loop2;
+    }
+  }
+}
+
+// labels and scope
+name: {
+  console.log("before");
+  break name;
+  console.log("after");
+}
+
+console.log("after scope");
+
+// obj freeze
