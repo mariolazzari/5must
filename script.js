@@ -207,3 +207,80 @@ name: {
 console.log("after scope");
 
 // obj freeze
+const mario = Object.freeze({
+  name: "Mario",
+  age: 46,
+  favoriteFood: "Pizza",
+  address: {
+    street: "Via Roma 1",
+  },
+  hobbies: Object.freeze(["reading"]),
+});
+
+console.log(mario);
+mario.name = "Mario Lazzari"; // ignored by freeze
+mario.address = { street: "Via Milano 1" };
+// mario.hobbies.push("coding"); // error by freeze
+console.log(mario);
+
+// Maps
+/*
+const CURRENCY_MAP = {
+  "United Stated": "USD",
+  India: "Rupee",
+};
+
+const currency = CURRENCY_MAP["United Stated"];
+console.log(currency);
+*/
+
+const CURRENCY_MAP = new Map([
+  // ["United Stated", "USD"],
+  // [India, "Rupee"],
+]);
+CURRENCY_MAP.set("United Stated", "USD");
+CURRENCY_MAP.set("India", "Rupee");
+console.log(CURRENCY_MAP.get("India"));
+
+// Sets
+const uniqueNums = [1, 2, 2, 3, 4, 5, 6, 6, 6];
+const set = new Set(uniqueNums);
+console.log(set);
+
+if (set.has(1)) {
+  set.delete(1);
+}
+console.log(set);
+
+// binary math
+console.log(0.1 + 0.2);
+
+// debug tips
+console.time("Timer");
+for (let i = 0; i < 100000000; i++) {
+  // really slow fx...
+}
+console.timeEnd("Timer");
+
+// error
+const err = 1;
+if (err === 1) {
+  console.error("error", err);
+}
+
+// warning
+const warn = 1;
+if (warn === 1) {
+  console.warn("warning", warn);
+}
+
+// assertion
+const assert = 1;
+console.assert(assert === 2, `${assert} is not 1`);
+
+const people = [
+  { name: "Mario", age: 46 },
+  { name: "Mariarosa", age: 45 },
+];
+//debugger;
+console.table(people);
